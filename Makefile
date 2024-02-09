@@ -56,6 +56,14 @@ ecr-credential-provider-linux-amd64:
 		-o=ecr-credential-provider-linux-amd64 \
 		cmd/ecr-credential-provider/*.go
 
+.PHONY: agu-credential-provider-linux-amd64
+agu-credential-provider-linux-amd64:
+	GO111MODULE=on CGO_ENABLED=0 GOOS=linux GOARCH="amd64" GOPROXY=$(GOPROXY) go build \
+		-trimpath \
+		-ldflags="$(LDFLAGS)" \
+		-o=agu-credential-provider-linux-amd64 \
+		cmd/agu/*.go
+
 .PHONY: ecr-credential-provider-linux-arm64
 ecr-credential-provider-linux-arm64:
 	GO111MODULE=on CGO_ENABLED=0 GOOS=linux GOARCH="arm64" GOPROXY=$(GOPROXY) go build \
